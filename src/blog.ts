@@ -24,16 +24,13 @@ const blogs: Blog[] = [
         description: "Accoridng to science, you shoudl get 9 hours of sleep per night",
         image: "sleep.png",
         imageAlt: "Picture of peaceful sleeping",
-        slug: "why-geeting-enough-sleep-is-essential",
+        slug: "why-getting-enough-sleep-is-essential",
     }
     
 
 ]
 
-// function to dynamically append blogs ot the blogs container
-
-function displayBlogs () {
-    //acess the blog container
+function displayBlogs() {
     const blogContainer = document.getElementById('blog-container');
 
     if (!blogContainer) {
@@ -41,39 +38,32 @@ function displayBlogs () {
         return;
     }
 
-    // iterate over each blog and create HTML elements
     blogs.forEach(blog => {
-        // create the div element
         const blogPost = document.createElement('div');
         blogPost.classList.add('blog-post');
 
-        // title element h1
         const titleElement = document.createElement('h1');
-        titleElement.textContent = blog.title;
+        const titleLink = document.createElement('a');
+        titleLink.href = `${blog.slug}.html`;  // Link to the individual blog page
+        titleLink.textContent = blog.title;
+        titleElement.appendChild(titleLink);
 
-        // date element p
         const dateElement = document.createElement('p');
         dateElement.textContent = `Date: ${blog.date}`;
 
-        // image element
         const imageElement = document.createElement('img');
         imageElement.src = blog.image;
         imageElement.alt = blog.imageAlt;
 
-        // discription element p
         const descriptionElement = document.createElement('p');
         descriptionElement.textContent = blog.description;
-        
-        // append all elements to the blog post
+
         blogPost.appendChild(titleElement);
         blogPost.appendChild(dateElement);
         blogPost.appendChild(imageElement);
         blogPost.appendChild(descriptionElement);
 
-        // append 
         blogContainer.appendChild(blogPost);
     });
-   
-
 }
 displayBlogs();
